@@ -53,13 +53,12 @@
       </nav>
         <div class="container-fluid ps-5 pe-5">
         <h1 class="title">Pokedex</h1>
-        <form action="" role="search" onsubmit="">
-          <form id="contact-form">
-            <label for="search">Buscar tu Pokemon</label>
-            <input title="Search" id="search" value="" type="text" required />
-            <button id="sendButton" type="button" class="btn btn-primary">Enviar</button>
+        <form action="" role="search" onsubmit="" class="row m-4 justify-content-center">
+            <h2 for="search" class="text-center p-2">Buscar tu Pokemon</h2>
+            <input title="Search" id="search" value="" type="text" required class="col-4" />
+            <button id="sendButton" type="button" class="btn btn-primary col-2">Enviar</button>
         </form>
-        <div class="pokemon-container">
+        <div class="pokemon-container row justify-content-center">
         </div>
         <nav class="pagination" aria-label="...">
             <ul class="pagination">

@@ -57,7 +57,14 @@ function fetchPokemons(offset, limit) {
 
 function createPokemon(pokemon) {
   const flipCard = document.createElement("div");
-  flipCard.classList.add("flip-card");
+  flipCard.classList.add("card");
+  flipCard.classList.add("m-2");
+  flipCard.classList.add("p-4");
+  flipCard.classList.add("bg-success");
+  flipCard.classList.add("bg-gradient");
+  flipCard.classList.add("col-xl-3");
+  flipCard.classList.add("col-md-5");
+  flipCard.classList.add("col-xs-8");
 
   const cardContainer = document.createElement("div");
   cardContainer.classList.add("card-container");
