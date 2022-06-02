@@ -2,20 +2,18 @@
  *	ELORDI, ALEJANDRO
  */
 
-
  'use strict';
 
 
 //Elementos del DOM
 
 const d = document;
-const boton = d.querySelector('.sendButton');
+const button = document.getElementById('sendButton');
+const inputElement = document.getElementById('search');
 const resDiv = d.querySelector('#pokeResultado');
 
-
-
-const pokeQueryBusqueda = (pokemon) => `query pokemon($name: String!){
-  pokemon(name: "${pokemon}") {
+const pokeQueryBusqueda = (pokemon) => `query pokemon {
+  pokemon(name:"${pokemon}") {
     id
     name
     sprites {
@@ -34,30 +32,32 @@ const pokeQueryBusqueda = (pokemon) => `query pokemon($name: String!){
   }
 }`
 
+button.addEventListener("click", ()=> {
 
-
-boton.addEventListener('click', () => {
-
-  //Obtengo el Pokemon buscado
-  const valorPokemon = inputElement.value;
+  console.log('valor', inputElement.value);  
+  const pokeValor = inputElement.value;
 
   const options = {
-    credentials: 'omit',
     method: 'POST',
-    headres: {'Content-Type': 'aplication/json'},
+    headres: {"Content-Type": "aplication/json"},
     body: JSON.stringify({
-      query: pokeQueryBusqueda(valorPokemon)
+      query: pokeQueryBusqueda(pokeValor),
     })
   }
-
-  fetch('https://pokeapi.co/api/v2/', options)
-  .then(function(res){console.log('Respuesta de API ', res);
-  return response.jason();})
+  
+  fetch('https://graphql-pokeapi.graphcdn.app/',options)
+  .then(function(res){
+    console.log('Respuesta de API ', res);
+    return response.jason();
+    })
   .then(function(json){
     resDiv.innerHTML = JSON.stringify(json.data)
-  }).finally(function(){
+  })
+  .finally(function(){
     //spiner de loading
-  }).catch(function(err){
+  })
+  .catch(function(err){
     console.log('Error',err)
   })
+  
 })
