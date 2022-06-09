@@ -58,19 +58,25 @@
             <input title="Search" id="search" value="" type="text" required class="col-4" />
             <button id="sendButton" type="button" class="btn btn-primary col-2">Enviar</button>
         </form>
-        <div class="pokemon-container row justify-content-center" id="pokeResultado">
+
+        <div id="pokeResultado"></div>
+        <!--Tarjeta de resultado-->
+        <div data-poke-card class="poke-card">
+            <!--Contenedor de imagen-->
+            <div data-poke-img-container class="img-container">
+            <img data-poke-img class="poke-img" src="">
+            </div>
+            <!--Contenedor de texto-->
+            <div data-poke-id></div>
+            <div data-poke-name class="poke-types"></div>
+            <div data-poke-types class="poke-types"></div>
         </div>
-        <nav class="pagination" aria-label="...">
-            <ul class="pagination">
-              <li class="page-item" id="previous">
-                <a class="page-link" href="#" tabindex="-1">Anterior</a>
-              </li>
-              <li class="page-item" id="next">
-                <a class="page-link" href="#">Siguiente</a>
-              </li>
-            </ul>
-          </nav>
-          <div id="spinner" class="spinner-border text-light" role="status">
+
+        <div class="pokemon-container row justify-content-center">
+        </div>
+
+
+          <div id="spinner" class="spinner-border text-light d-none" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
       </div>
