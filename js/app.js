@@ -8,6 +8,8 @@
 
 const d = document;
 const button = document.getElementById('sendButton');
+const pkfav = document.querySelector('.pkfav');
+const btnfav = document.querySelector('sendButton');
 const inputElement = document.getElementById('search');
 const resDiv = d.querySelector('#pokeResultado');
 const pokemonContainer = document.querySelector(".pokemon-container");
@@ -15,11 +17,17 @@ const spinner = document.querySelector("#spinner");
 
 
 
+
 //-----------------------Busqueda listado completo------------------------//
-let limit = 10;
+
+const busquedaPoke = JSON.parse(localStorage.getItem('pokeresponse'));
+
+//parametros a mostrar en el inicio
+let limit = 1000;
 let offset = 0;
 
-function fetchPokemon() {
+//fetch del listado de pokemon
+function fetchPokemons() {
 
 const pokelista = () => `query {
   pokemons(limit: ${limit}, offset: ${offset}) {
@@ -52,31 +60,57 @@ const options = {
 };
   
   fetch('https://graphql-pokeapi.graphcdn.app/', options)
-  .then((response) => response.json())
-  .then((response) => console.log(response))
-  .then((json) => {
-    //Json con lista de pokemon
-    pokemonContainer.innerHTML = JSON.stringify(json)
+  .then((response) => {
+    return response.json();
   })
-
+  .then((data) => {
+    console.log('Json con pokes',data);
+    createPokemons(data);
+  })
   .catch((err)=>{
     console.log('Error',err)
   }) 
 }
 
+//tarjetas del listado de pokemon
+const createPokemons = (json) => {
+  
+  //Paso los datos a un Array
+  JSON.stringify(json)
+  const pokeLista = json.data.pokemons.results;
+  console.log('Esta es la lista :',pokeLista); // aca esta el array de pokes
 
-function fetchPokemons(offset, limit) {
-  spinner.style.display = "block";
-  for (let i = offset; i <= offset + limit; i++) {
-    fetchPokemon(i);
-  }
+  pokeLista.forEach(pokemon => {
+
+
+    const pokeCards = d.createElement("li");
+    const pokeCardsimg = d.createElement("div");
+    const pokeImgs = d.createElement("img");
+    const pokeNames = d.createElement("span");
+
+    pokeCards.className = 'poke-card col-3 m-2';
+    pokeNames.className = 'pknombre';
+
+    pokeImgs.setAttribute('src', pokemon.image);
+    pokeNames.textContent = pokemon.name;
+
+    pokeCards.appendChild(pokeCardsimg);
+    pokeCardsimg.appendChild(pokeImgs);
+    pokeCards.appendChild(pokeNames);
+    pokemonContainer.appendChild(pokeCards);
+   
+  });
+
 }
 
-fetchPokemons(offset, limit);
+//mostrar el listado de pokemon al inicio
+fetchPokemons(limit);
 
 
 //-----------------------Busqueda individial------------------------//
 
+
+//Buscador de pokemon
 button.addEventListener("click", ()=> {
 
   const pokeValor = inputElement.value;
@@ -100,13 +134,13 @@ button.addEventListener("click", ()=> {
   
   //Options para el fetch
   const options = {
-    credentials: 'omit',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      query: queryGraphQL(pokeValor),
-      variables: {
-    limit: 2,
-    offset: 1,
+  credentials: 'omit',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    query: queryGraphQL(pokeValor),
+    variables: {
+  limit: 2,
+  offset: 1,
   },
     }),
     method: 'POST',
@@ -118,20 +152,18 @@ button.addEventListener("click", ()=> {
         return response.json();
       })
   .then((json) => {
-
-    pokeRender(json);
-
-    //pokeRender(json);
-    console.log('Valor del fetch:', json.data);
-
+      pokeRender(json);
+      saveResults('pokeresponse', json);
+      saveFav('pokefavoritos', 'proximo pokemon');
+      console.log('Valor del fetch:', json.data);
   })
   .catch((err)=>{
     console.log('Error',err)
   })
 });
 
-//-----------------------Crear tarjeta de busqueda------------------------//
 
+//Crear tarjeta buscada
 const pokeCard = d.querySelector('[data-poke-card]');
 const pokeName = d.querySelector('[data-poke-name]');
 const pokeImg = d.querySelector('[data-poke-img]');
@@ -139,12 +171,34 @@ const pokeImgCont = d.querySelector('[data-poke-img-container]');
 const pokeId = d.querySelector('[data-poke-id]');
 const pokeTypes = d.querySelector('[data-poke-types]');
 
-//Tarjeta
+//Carga el LocalStorage al iniciar
+if(busquedaPoke != null){
+
+  pokeCard.className = 'poke-card col-3 m-2';
+
+  JSON.stringify(busquedaPoke);
+  console.log('Esto tiene que ser igual a la tarjeta: ', busquedaPoke);
+
+  const id = busquedaPoke.pokemon.id;
+  const sprite = busquedaPoke.pokemon.sprites.front_default;
+  const type = busquedaPoke.pokemon.types;
+  const name = busquedaPoke.pokemon.name;
+
+  //Contruyo tarjeta
+  pokeId.innerHTML = `<span>Nro. : ${id}</span>`;
+  pokeName.innerHTML = `<span>${name}</span>`;
+  pokeImg.setAttribute('src',sprite);
+
+}
+
+//Creador de PokeTarjeta
 const pokeRender = (json) => {
-  
+
+  pokeCard.className = 'poke-card col-3 m-2';
+
   //Paso los datos a un Array
-  JSON.stringify(json.data)
- 
+  JSON.stringify(json.data);
+
   
   //Tiro en consola ese Array
   console.log('Armado de tarjeta: ', json.data.pokemon);
@@ -153,36 +207,61 @@ const pokeRender = (json) => {
   const type = json.data.pokemon.types;
   const name = json.data.pokemon.name;
 
-
   //Contruyo tarjeta
   pokeId.innerHTML = `<span>Nro. : ${id}</span>`;
   pokeName.innerHTML = `<span>${name}</span>`;
   pokeImg.setAttribute('src',sprite);
   renderPokeTypes(type);
-
-  //pokeImgCont
-  //pokeCard
-
+  
 }
 
-//Funciones complementarias
 
+//-----------------------Funciones Complementarias------------------------//
+
+//Tipos de pokemon
 const renderPokeTypes = (types)=> {
 
   pokeTypes.innerHTML = '';
+  //Recorre los tipos de cada pokemon
   types.forEach(type => {
     const typePokeElement = d.createElement("div");
     typePokeElement.textContent = type.type.name;
     pokeTypes.appendChild(typePokeElement);
-    console.log(type.type.name);
-
-
-    
   });
-
-
 }
 
+//Guardado en LocalStorage
+function saveResults(pokeresponse, json){    
+  //Guardo en un objeto JSON
+  localStorage.setItem(pokeresponse, JSON.stringify(json.data));
+}
+
+function saveFav(pokefavoritos, json){    
+  //Guardo en un objeto JSON
+  const pokefavs =[];
+}
+
+//-----------------------Favoritos------------------------//
+const pokefavs =[];
+const pokeLs = localStorage.getItem('pokefavoritos');
 
 
+if( pokeLs !== undefined){
 
+  console.log('ingreso la primer busqueda como valor');
+  const pokefavs = JSON.parse(localStorage.getItem('pokeresponse'));
+  localStorage.setItem('pokefavoritos', JSON.stringify(pokefavs));
+
+} 
+  
+
+pkfav.addEventListener("click" , () =>{
+
+  pokefavs.push(JSON.parse(localStorage.getItem('pokeresponse')))
+  localStorage.setItem('pokefavoritos', JSON.stringify(pokefavs));
+  console.log(pokefavs);
+
+  })
+
+
+  
