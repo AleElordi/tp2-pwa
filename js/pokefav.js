@@ -18,16 +18,16 @@ busquedaPoke.forEach(pokemon => {
     const pokediv = d.createElement("div");
 
 
-    pokeCards.className = 'poke-card col-3 m-2';
+    pokeCards.className = 'poke-card col-10 col-lg-4 m-3';
     pokeNames.className = 'pknombre';
 
-    pokeImgs.setAttribute('src', pokemon.pokemon.sprites.front_default);
+    pokeImgs.setAttribute('src', pokemon.pokemon.sprites);
     pokeNames.textContent = pokemon.pokemon.name;
-    pokeId.textContent = `Nro.: ${pokemon.pokemon.id}`;
+    pokeId.textContent = `${pokemon.pokemon.id}`;
 
     pokeCards.appendChild(pokeCardsimg);
     pokeCardsimg.appendChild(pokeImgs);
-    pokediv.appendChild(pokeId);
+    pokediv.appendChild(pokeId);    
     pokeCards.appendChild(pokediv);
     pokeCards.appendChild(pokeNames);
     pokedivFavs.appendChild(pokeCards); 
@@ -36,7 +36,34 @@ busquedaPoke.forEach(pokemon => {
 
 pokedelet.addEventListener("click", ()=> {
 
- console.log('Borro toda la lista');
- localStorage.clear();
 
-})  
+
+swal("Esto borrará todo tu equipo ¿Estas seguro?", {
+    buttons: {
+        cancel: "No",
+        Si: true,
+    },
+    })
+    .then((value) => {
+    switch (value) {
+    
+        case "Si":
+        localStorage.removeItem('pokefavoritos'); 
+        console.log(value);
+        location.reload();
+        break;
+    
+        default:
+        swal("Ok mantendremos tu equipo");
+    }
+    })
+
+
+
+})
+
+
+
+
+
+

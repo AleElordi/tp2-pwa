@@ -67,3 +67,58 @@ list-style-type: none;
 }
 
 
+nav {
+background-color: #FB1B1B;
+}
+
+#logo {
+
+    background-image: url(https://archives.bulbagarden.net/media/upload/4/4b/Pok%C3%A9dex_logo.png);
+    background-size: cover;
+    padding: 0px;
+    width: 200px;
+    height: 70px;
+}
+
+#menu {
+    margin: 2rem;
+  } 
+
+
+#card {
+    position: relative;
+    height: fit-content;
+    font-family: 'Roboto Mono', monospace;
+    max-width: 50vw;
+    border-radius: 4px;
+    color: #000;
+    text-align: center;
+    padding: 1rem;
+    margin: 10rem auto 2rem auto;
+    background-color: #FFF;
+    border: 1px solid black;
+}
+
+#card::before {
+    content: '';
+    background: radial-gradient(black 33%, transparent 33%);
+    background-size: 3px 3px;
+    border-radius: 4px;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    z-index: -1;
+}
+
+#lateral {
+
+    background-color: #FB1B1B;
+    color: #FFF;  
+}
+
+h1, h2, h3 {
+    font-weight: bolder;
+    font-family: 'Roboto Mono', monospace;
+}

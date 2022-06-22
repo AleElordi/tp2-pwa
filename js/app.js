@@ -88,7 +88,7 @@ const createPokemons = (json) => {
     const pokeImgs = d.createElement("img");
     const pokeNames = d.createElement("span");
 
-    pokeCards.className = 'poke-card col-3 m-2';
+    pokeCards.className = 'poke-card col-10 col-sm-5 col-lg-3 col-xl-2 m-2';
     pokeNames.className = 'pknombre';
 
     pokeImgs.setAttribute('src', pokemon.image);
@@ -236,32 +236,37 @@ function saveResults(pokeresponse, json){
   localStorage.setItem(pokeresponse, JSON.stringify(json.data));
 }
 
-function saveFav(pokefavoritos, json){    
-  //Guardo en un objeto JSON
-  const pokefavs =[];
-}
+
 
 //-----------------------Favoritos------------------------//
 const pokefavs =[];
 const pokeLs = localStorage.getItem('pokefavoritos');
 
 
-if( pokeLs !== undefined){
-
-  console.log('ingreso la primer busqueda como valor');
-  const pokefavs = JSON.parse(localStorage.getItem('pokeresponse'));
-  localStorage.setItem('pokefavoritos', JSON.stringify(pokefavs));
-
-} 
-  
-
 pkfav.addEventListener("click" , () =>{
+  //mando lo buscado en response al array de favoritos
+    var newPoke={pokemon:{
+    id: d.querySelector('[data-poke-id]').textContent,
+    name: d.querySelector('[data-poke-name]').textContent,
+    sprites: d.querySelector('[data-poke-img]').src
+    }};
 
-  pokefavs.push(JSON.parse(localStorage.getItem('pokeresponse')))
-  localStorage.setItem('pokefavoritos', JSON.stringify(pokefavs));
-  console.log(pokefavs);
+  console.log(newPoke);
+  pokefavs.push(newPoke);
+  lSpokeList(pokefavs);
+  swal('Equipo Pokemon','Has agregado un nuevo pokemon a tu equipo','success');
+})
 
-  })
+function getPokeList(){
+  var storedList = localStorage.getItem('pokefavoritos');
+  if(storedList == null){
+    pokefavs=[];
+  } else {
+    pokefavs= JSON.parse(storedList);
+ }
+  return pokefavs;
+}
 
-
-  
+function lSpokeList(plist){
+  localStorage.setItem('pokefavoritos', JSON.stringify(plist));
+}
