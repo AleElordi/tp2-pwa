@@ -24,16 +24,16 @@
           <a class="navbar-brand" href="index.html" id="logo"></a>
           <div class="offcanvas offcanvas-start " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
-              <span class="offcanvas-title" id="offcanvasNavbarLabel">Pokedex</span>
+              <a class="navbar-brand" href="index.html" id="sublogo"></a>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                  <a class="nav-link fw-bold" aria-current="page" href="index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Equipo Pokemon</a>
+                  <a class="nav-link fw-bold" href="#">Tu equipo Pokemon</a>
                 </li>
               </ul>
             </div>
@@ -45,8 +45,8 @@
         <div>
             <h2 for="search" class="text-center pt-5">Este es tu equipo pokemon</h2>
         </div>
-        <div>
-            <button class="delete">Borrar equipo</button>
+        <div class="row justify-content-center p-2">
+            <button class="delete text-bg-danger col-2">Borrar equipo</button>
         </div>
         <ul class="pokemon-container row justify-content-center divFavs">
         </ul>

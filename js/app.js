@@ -15,15 +15,19 @@ const resDiv = d.querySelector('#pokeResultado');
 const pokemonContainer = document.querySelector(".pokemon-container");
 const spinner = document.querySelector("#spinner");
 
+//---------------------Spinner------------------------//
 
-
+window.onload = function(){
+  spinner.style.visibility = 'hidden';
+  spinner.style.display = 'none';
+}
 
 //-----------------------Busqueda listado completo------------------------//
 
 const busquedaPoke = JSON.parse(localStorage.getItem('pokeresponse'));
 
 //parametros a mostrar en el inicio
-let limit = 1000;
+let limit = 1200;
 let offset = 0;
 
 //fetch del listado de pokemon
@@ -174,7 +178,7 @@ const pokeTypes = d.querySelector('[data-poke-types]');
 //Carga el LocalStorage al iniciar
 if(busquedaPoke != null){
 
-  pokeCard.className = 'poke-card col-3 m-2';
+  pokeCard.className = 'poke-card col-8 col-sm-5 col-lg-3 col-xl-2 m-2';
 
   JSON.stringify(busquedaPoke);
   console.log('Esto tiene que ser igual a la tarjeta: ', busquedaPoke);
@@ -194,7 +198,7 @@ if(busquedaPoke != null){
 //Creador de PokeTarjeta
 const pokeRender = (json) => {
 
-  pokeCard.className = 'poke-card col-3 m-2';
+  pokeCard.className = 'poke-card col-8 col-lg-3 col-xl-2 m-2';
 
   //Paso los datos a un Array
   JSON.stringify(json.data);

@@ -21,18 +21,18 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <a class="navbar-brand" href="#" id="logo"></a>
-          <div class="offcanvas offcanvas-start " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas offcanvas-start " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" >
             <div class="offcanvas-header">
-              <span class="offcanvas-title" id="offcanvasNavbarLabel">Pokedex</span>
+              <a class="navbar-brand" href="#" id="sublogo"></a>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body">
+            <div class="offcanvas-body ">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  <a class="nav-link fw-bold" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="fav.html">Equipo Pokemon</a>
+                  <a class="nav-link fw-bold" href="fav.html">Tu equipo Pokemon</a>
                 </li>
               </ul>
             </div>
@@ -46,16 +46,15 @@
             <form role="search" class="row m-4 justify-content-center">
                 <h2 for="search" class="text-center">Busca tu Pokemon</h2>
                 <span class="text-center pb-3">y arma tu equipo ideal</span>
-                <input title="Search" id="search" value="" type="text" required class="col-4" />
-                <button id="sendButton" type="button" class="btn btn-danger col-2 rounded-0">Buscar</button>
+                <input title="Search" id="search" type="text" required class="col-8" />
+                <button id="sendButton" type="button" class="btn btn-danger col-8 col-lg-2 rounded-0">Buscar</button>
             </form>
           </div>
         </div>
-        <div id="spinner" class="spinner-border text-light" role="status"></div>
         <div class="row justify-content-center" id="pokeResultado"></div>
         <!--Tarjeta de resultado-->
         <div class="row justify-content-center mb-3">
-        <div data-poke-card class="col-3 poke-card text-center d-none">
+        <div data-poke-card class="poke-card text-center d-none">
             <!--Contenedor de imagen-->
             <div data-poke-img-container class="img-container">
             <img data-poke-img class="poke-img" src="">
@@ -68,16 +67,17 @@
               <button class="pkfav">Agregar</button>
             </div>
         </div>
-        </div>
+        </div class="container-fluid text-center">
             <h3 class="text-center p-4">Lista completa de pokemon</h3>
-            <ul class="pokemon-container row justify-content-center">
+            <div id="spinner" class="spinner-border text-danger" role="status"></div>
+            <ul class="pokemon-container row justify-content-center p-0 m-0">
             <!--Contenedor de Lista-->
             </ul>          
         </div>
       </div>
-      <footer class="text-center text-white fixed-bottom" style="background-color: #FB1B1B;">
+      <footer id="footer" class="text-center text-white fixed-bottom">
         <!-- Copyright -->
-        <div class="text-center p-3" style="background-color:  #FB1B1B;">
+        <div class="text-center p-3">
           © 2022 TP2 PWA - Alejandro Elordi
           <a class="text-white" href="https://github.com/AleElordi">GitHub</a>
         </div>
