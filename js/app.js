@@ -282,7 +282,7 @@ const renderPokeAttaks = (move)=> {
   move.forEach(move => {
 
     const pokeMove = d.createElement("li");
-    pokeMove.className ='ataqueMov col-3';
+    pokeMove.className ='ataqueMov col-6 col-lg-3';
 
     pokeMove.innerHTML = '';
     pokeMove.textContent = move.move.name;
