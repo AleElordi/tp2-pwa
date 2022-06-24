@@ -6,7 +6,20 @@ importScripts(
 
 if(workbox){
     console.log('Workbox cargado');
-    workbox.precaching.precacheAndRoute([]);
-}else{
+
+    self.addEventListener("message",(event)=>{
+    if(event.data && event.data.type =="SKIP_WAITING"){
+        self.skipWaiting();
+    }
+    })
+
+    workbox.routing.registerRoute(
+        new RegExp('/*'),
+        new workbox.strategies.StaleWhileRevalidate({
+            cacheName:VERSION
+        })
+    )
+    //workbox.precaching.precacheAndRoute([]);
+} else{
     console.log('Workbox pendiente');
 }
