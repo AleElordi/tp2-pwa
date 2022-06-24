@@ -128,6 +128,11 @@ button.addEventListener("click", ()=> {
       sprites {
         front_default
       }
+      moves {
+        move {
+          name
+        }
+    }
       types {
         type {
           name
@@ -210,13 +215,15 @@ const pokeRender = (json) => {
   const sprite = json.data.pokemon.sprites.front_default;
   const type = json.data.pokemon.types;
   const name = json.data.pokemon.name;
+  const move = json.data.pokemon.moves;
 
   //Contruyo tarjeta
   pokeId.innerHTML = `<span>Nro. : ${id}</span>`;
   pokeName.innerHTML = `<span>${name}</span>`;
   pokeImg.setAttribute('src',sprite);
   renderPokeTypes(type);
-  
+  renderPokeAttaks(move);
+
 }
 
 
@@ -240,6 +247,30 @@ function saveResults(pokeresponse, json){
   localStorage.setItem(pokeresponse, JSON.stringify(json.data));
 }
 
+//Ataques y movimientos 
+
+const pokeMoves = d.querySelector('.divMoves');
+
+
+const renderPokeAttaks = (move)=> {
+
+  //Brorro el contenido del ul
+  const myNodo = d.querySelector('.divMoves');
+  myNodo.textContent = '';
+
+  //Recorro y coloco los nuevos movimientos
+  move.forEach(move => {
+
+    const pokeMove = d.createElement("li");
+    pokeMove.className ='ataqueMov col-3';
+
+    pokeMove.innerHTML = '';
+    pokeMove.textContent = move.move.name;
+    pokeMoves.appendChild(pokeMove);  
+
+  })
+
+}
 
 
 //-----------------------Favoritos------------------------//

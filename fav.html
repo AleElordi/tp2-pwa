@@ -5,6 +5,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/dexie/dist/dexie.js"></script>
+    <link rel="icon" type="image/png" href="img/pokeball.png">
     <!-- CSS only -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,10 +22,10 @@
           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" id="menu">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a class="navbar-brand" href="index.html" id="logo"></a>
-          <div class="offcanvas offcanvas-start " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <a class="navbar-brand" href="index.html"><img src="img/pokedex.png" alt="Pokedex Logo" id="logo"></a>
+          <div class="offcanvas offcanvas-start " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" >
             <div class="offcanvas-header">
-              <a class="navbar-brand" href="index.html" id="sublogo"></a>
+              <a class="navbar-brand" href="index.html"><img src="img/pokedex.png" alt="Pokedex Logo" id="logo"></a>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
@@ -35,6 +36,9 @@
                 <li class="nav-item">
                   <a class="nav-link fw-bold" href="#">Tu equipo Pokemon</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link fw-bold" href="extra.html">Ataques y movimientos</a>
+              </li>
               </ul>
             </div>
           </div>
@@ -51,12 +55,10 @@
         <ul class="pokemon-container row justify-content-center divFavs">
         </ul>
         <footer class="text-center text-white fixed-bottom" style="background-color: #FB1B1B;">
-          <!-- Copyright -->
           <div class="text-center p-3" style="background-color:  #FB1B1B;">
             © 2022 TP2 PWA - Alejandro Elordi
             <a class="text-white" href="https://github.com/AleElordi">GitHub</a>
           </div>
-          <!-- Copyright -->
         </footer>
         <script src="./js/pokefav.js"></script>
         <script src="./js/registersw.js"></script>

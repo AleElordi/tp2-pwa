@@ -59,7 +59,7 @@ input {
 }
 
 li {
-list-style-type: none;
+    list-style-type: none;
 }
 
 .pknombre {
@@ -72,8 +72,7 @@ background-color: #FB1B1B;
 }
 
 #logo {
-
-    background-image: url(https://archives.bulbagarden.net/media/upload/4/4b/Pok%C3%A9dex_logo.png);
+    background-image: url(img/pokedex.png);
     background-size: cover;
     padding: 0px;
     width: 200px;
@@ -130,14 +129,28 @@ h1, h2, h3 {
 }
 
 #footer {
-background-color: #FB1B1B;
+    background-color: #FB1B1B;
 }
 
 #sublogo {
-
-    background-image: url(https://archives.bulbagarden.net/media/upload/4/4b/Pok%C3%A9dex_logo.png);
+    background-image: url(img/pokedex.png);
     background-size: cover;
     padding: 0px;
     width: 200px;
     height: 70px;
+}
+
+.ataqueMov{
+
+    padding: 5px;
+    margin: 5px;
+    border-radius: 4px;
+    border: 1px dashed black;
+
+}
+
+.divMoves {
+
+    overflow:visible;
+
 }
