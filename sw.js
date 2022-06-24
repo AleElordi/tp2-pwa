@@ -10,7 +10,7 @@ if(workbox){
     self.addEventListener("message",(event)=>{
     if(event.data && event.data.type =="SKIP_WAITING"){
         self.skipWaiting();
-    }
+        }
     })
 
     workbox.routing.registerRoute(
@@ -19,7 +19,7 @@ if(workbox){
             cacheName:VERSION
         })
     )
-    //workbox.precaching.precacheAndRoute([]);
-} else{
+
+} else {
     console.log('Workbox pendiente');
 }

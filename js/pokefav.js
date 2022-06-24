@@ -3,6 +3,28 @@ const pokedivFavs= d.querySelector('.divFavs');
 const busquedaPoke = JSON.parse(localStorage.getItem('pokefavoritos'));
 const pokedelet = d.querySelector('.delete');
 const pokefavs = JSON.parse(localStorage.getItem('pokefavoritos'));
+const offline = d.querySelector("#offline");
+const contenido = d.querySelector('#contenido')
+
+//---------------------Comportamiento on y offline------------------------//
+
+window.addEventListener('offline', event => {
+  console.log('La aplicacion se encuentra offline')
+ })
+ 
+ 
+ window.addEventListener('online', event => {
+   console.log('La aplicacion se encuentra online')
+ })
+ 
+ if(navigator.onLine){
+  offline.className = 'd-none';
+ } else {
+  contenido.className = 'd-none';
+ }
+ 
+
+//-----------------------Armado de equipo------------------------//
 
 busquedaPoke.forEach(pokemon => {
 
@@ -33,6 +55,8 @@ busquedaPoke.forEach(pokemon => {
     pokedivFavs.appendChild(pokeCards); 
 
 });
+
+//-----------------------Borrar equipo------------------------//
 
 pokedelet.addEventListener("click", ()=> {
 

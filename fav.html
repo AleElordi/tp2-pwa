@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/dexie/dist/dexie.js"></script>
     <link rel="icon" type="image/png" href="img/pokeball.png">
+    <link rel="manifest" href="manifest.json">
     <!-- CSS only -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,9 +24,9 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <a class="navbar-brand" href="index.html"><img src="img/pokedex.png" alt="Pokedex Logo" id="logo"></a>
-          <div class="offcanvas offcanvas-start " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" >
+          <div class="offcanvas offcanvas-start " tabindex="-1" id="offcanvasNavbar">
             <div class="offcanvas-header">
-              <a class="navbar-brand" href="index.html"><img src="img/pokedex.png" alt="Pokedex Logo" id="logo"></a>
+              <a class="navbar-brand" href="index.html"><img src="img/pokedex.png" alt="Pokedex Logo" id="logod"></a>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
@@ -44,16 +45,26 @@
           </div>
         </div>
       </nav>
-        <div class="container-fluid p-5">
+
+      <!--Tarjeta de Offline-->
+      <div class="container offline" id="offline">
+        <div class="row justify-content-center">
+        <div class="col-12 fs-1 bold"><p>La aplicación se encuentra offline</p></div>
+        <img src="img/offline.png" alt="Snorlax dice que estas desconectado" class="col-6">
+        </div>
+      </div>
+      
+      <div class="container-fluid p-5" id="contenido">
         <h1 class="title">Pokedex</h1>
         <div>
-            <h2 for="search" class="text-center pt-5">Este es tu equipo pokemon</h2>
+            <h2 class="text-center pt-5">Este es tu equipo pokemon</h2>
         </div>
         <div class="row justify-content-center p-2">
             <button class="delete text-bg-danger col-2">Borrar equipo</button>
         </div>
         <ul class="pokemon-container row justify-content-center divFavs">
         </ul>
+      </div>
         <footer class="text-center text-white fixed-bottom" style="background-color: #FB1B1B;">
           <div class="text-center p-3" style="background-color:  #FB1B1B;">
             © 2022 TP2 PWA - Alejandro Elordi

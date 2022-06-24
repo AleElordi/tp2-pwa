@@ -4,16 +4,39 @@
 
 'use strict';
 
+
 //Elementos del DOM
 
 const d = document;
-const button = document.getElementById('sendButton');
-const pkfav = document.querySelector('.pkfav');
-const btnfav = document.querySelector('sendButton');
-const inputElement = document.getElementById('search');
+const button = d.getElementById('sendButton');
+const pkfav = d.querySelector('.pkfav');
+const btnfav = d.querySelector('sendButton');
+const inputElement = d.getElementById('search');
 const resDiv = d.querySelector('#pokeResultado');
-const pokemonContainer = document.querySelector(".pokemon-container");
-const spinner = document.querySelector("#spinner");
+const pokemonContainer = d.querySelector(".pokemon-container");
+const spinner = d.querySelector("#spinner");
+const offline = d.querySelector("#offline");
+const contenido = d.querySelector('#contenido')
+
+//---------------------Comportamiento on y offline------------------------//
+
+window.addEventListener('offline', event => {
+  console.log('La aplicacion se encuentra offline')
+ })
+ 
+ 
+ window.addEventListener('online', event => {
+   console.log('La aplicacion se encuentra online')
+ })
+ 
+ if(navigator.onLine){
+  offline.className = 'd-none';
+ } else {
+  offline.className = 'pt-5';
+  contenido.className = 'd-none';
+ }
+ 
+
 
 //---------------------Spinner------------------------//
 
@@ -68,7 +91,6 @@ const options = {
     return response.json();
   })
   .then((data) => {
-    console.log('Json con pokes',data);
     createPokemons(data);
   })
   .catch((err)=>{
@@ -82,7 +104,6 @@ const createPokemons = (json) => {
   //Paso los datos a un Array
   JSON.stringify(json)
   const pokeLista = json.data.pokemons.results;
-  console.log('Esta es la lista :',pokeLista); // aca esta el array de pokes
 
   pokeLista.forEach(pokemon => {
 
@@ -186,7 +207,6 @@ if(busquedaPoke != null){
   pokeCard.className = 'poke-card col-8 col-sm-5 col-lg-3 col-xl-2 m-2';
 
   JSON.stringify(busquedaPoke);
-  console.log('Esto tiene que ser igual a la tarjeta: ', busquedaPoke);
 
   const id = busquedaPoke.pokemon.id;
   const sprite = busquedaPoke.pokemon.sprites.front_default;
