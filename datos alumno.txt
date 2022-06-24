@@ -1,0 +1,5 @@
+Nombre: Alejandro Martin Elordi
+Comision: DWN-TN3A
+Materia: PWA 
+
+Instrucciones: Buscar pokemon en minúscula y utilizar el botón de búsqueda para confirmar.
